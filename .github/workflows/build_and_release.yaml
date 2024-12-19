@@ -1,0 +1,34 @@
+name: Build and Publish JAR to GitHub Releases
+
+on:
+  push:
+    tags:
+      - '*'  # Trigger on tags
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Java
+      - name: Set up Java
+        uses: yumemi-inc/setup-java-gradle@v2
+
+      # Set up Kotlin (if needed)
+      - name: Set up Kotlin
+        uses: JetBrains/gradle-intellij-plugin@v1
+
+      # Build the JAR using Gradle
+      - name: Build JAR
+        run: ./gradlew clean build
+
+      # upload artifact
+      - name: Upload Release Asset
+        uses: csexton/release-asset-action@v3
+        with:
+          pattern: build/libs/*.jar
+          github-token: ${{ secrets.GITHUB_TOKEN }}
