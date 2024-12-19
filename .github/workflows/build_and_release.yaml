@@ -28,8 +28,7 @@ jobs:
           GRADLE_OPTS: '-Dorg.gradle.caching=true'
 
       # upload artifact
-      - name: Upload Release Asset
-        uses: csexton/release-asset-action@v3
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
         with:
-          pattern: build/libs/*.jar
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: build/libs/*.jar
