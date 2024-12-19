@@ -16,3 +16,9 @@ subprojects {
 repositories {
     mavenCentral()
 }
+
+tasks.register<Jar>("jar") {
+    archiveBaseName.set("ShadowService")
+    archiveVersion.set(version.toString())
+    from(sourceSets.main.get().output)
+}
