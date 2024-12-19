@@ -32,3 +32,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           path: build/libs/*.jar
+
+      # Create a GitHub Release
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/libs/*.jar
