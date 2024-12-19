@@ -23,6 +23,8 @@ gradlePlugin {
             id = "com.jramberger.shadow"
             displayName = "ShadowService"
             description = "Generate AWS SAM configuration files directly from your code."
+            website = "https://github.com/JohnRamberger/ShadowService"
+            vcsUrl = "https://github.com/JohnRamberger/ShadowService.git"
             tags = listOf("aws", "sam", "shadow")
             implementationClass = "com.jramberger.shadow.plugin.ShadowPlugin"
         }
