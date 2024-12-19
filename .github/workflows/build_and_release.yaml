@@ -17,12 +17,15 @@ jobs:
       # Set up Java
       - name: Set up Java
         uses: yumemi-inc/setup-java-gradle@v2
+        with:
+          cache-read-only: false
+          gradle-home-cache-cleanup: true
 
       # Build the JAR using Gradle
       - name: Build JAR
-        run: |
-          chmod +x gradlew
-          ./gradlew clean build
+        run: ./gradlew clean build
+        env:
+          GRADLE_OPTS: '-Dorg.gradle.caching=true'
 
       # upload artifact
       - name: Upload Release Asset
