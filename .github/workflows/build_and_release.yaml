@@ -18,10 +18,6 @@ jobs:
       - name: Set up Java
         uses: yumemi-inc/setup-java-gradle@v2
 
-      # Set up Kotlin (if needed)
-      - name: Set up Kotlin
-        uses: JetBrains/gradle-intellij-plugin@v1
-
       # Build the JAR using Gradle
       - name: Build JAR
         run: ./gradlew clean build
