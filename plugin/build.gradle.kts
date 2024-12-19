@@ -2,10 +2,11 @@ plugins {
     kotlin("jvm")
     id("java-gradle-plugin")
     id("com.gradle.plugin-publish") version "1.3.0" // For publishing the plugin
+    `maven-publish`
 }
 
+group = "com.jramberger.shadow"
 version = "1.0.0"
-group = "com.jramberger"
 
 dependencies {
     implementation(project(":processor"))
@@ -23,12 +24,20 @@ gradlePlugin {
     vcsUrl = "https://github.com/JohnRamberger/ShadowService.git"
 
     plugins {
-        create("shadow") {
+        create("ShadowService") {
             id = "com.jramberger.shadow"
             displayName = "ShadowService"
             description = "Generate AWS SAM configuration files directly from your code."
             tags = listOf("aws", "sam", "shadow")
             implementationClass = "com.jramberger.shadow.plugin.ShadowPlugin"
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
         }
     }
 }
