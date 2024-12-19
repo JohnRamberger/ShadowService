@@ -20,7 +20,9 @@ jobs:
 
       # Build the JAR using Gradle
       - name: Build JAR
-        run: ./gradlew clean build
+        run: |
+          chmod +x gradlew
+          ./gradlew clean build
 
       # upload artifact
       - name: Upload Release Asset
