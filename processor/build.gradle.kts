@@ -13,6 +13,8 @@ dependencies {
     implementation(libs.auto.service.annotations)
     implementation(libs.simple.yaml)
     implementation(project(":annotation"))
+    implementation(project(":service"))
+    implementation(libs.kaml)
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }

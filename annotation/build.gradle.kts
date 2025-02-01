@@ -9,6 +9,7 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation(project(":service"))
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
