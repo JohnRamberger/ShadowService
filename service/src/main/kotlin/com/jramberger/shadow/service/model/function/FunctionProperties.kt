@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 // https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
 @Serializable
-data class FunctionConfig(
+data class FunctionProperties(
     @SerialName("CodeUri")
     val codeUri: String? = null,
     @SerialName("Handler")
@@ -32,4 +32,6 @@ data class FunctionConfig(
     val reservedConcurrentExecutions: Int? = null,
 //    val role: String? = null,
 //    val policies: List<String> = emptyList(),
+    @SerialName("Events")
+    val events: Map<String, Event> = emptyMap(),
 )

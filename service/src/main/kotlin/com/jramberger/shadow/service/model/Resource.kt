@@ -1,6 +1,7 @@
 package com.jramberger.shadow.service.model
 
 import com.jramberger.shadow.service.model.function.FunctionConfig
+import com.jramberger.shadow.service.model.function.FunctionProperties
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,7 +14,7 @@ sealed class Resource {
     @Serializable
     data class Function(
         @SerialName("Properties")
-        val properties: FunctionConfig,
+        val properties: FunctionProperties,
     ) : Resource() {
         override val type: String = "AWS::Serverless::Function"
     }

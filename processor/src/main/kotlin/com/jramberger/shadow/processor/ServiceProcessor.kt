@@ -13,6 +13,7 @@ import com.jramberger.shadow.service.model.Resource
 import com.jramberger.shadow.service.model.SamTemplate
 import com.jramberger.shadow.service.model.function.Event
 import com.jramberger.shadow.service.model.function.FunctionConfig
+import com.jramberger.shadow.service.model.function.FunctionProperties
 import com.jramberger.shadow.service.model.function.HttpApiProperties
 import java.io.File
 import javax.annotation.processing.AbstractProcessor
@@ -105,8 +106,8 @@ class ServiceProcessor : AbstractProcessor() {
                     funcName to
                             Resource.Function(
                                 properties =
-                                FunctionConfig(
-                                    codeUri = "./build/libs/",
+                                FunctionProperties(
+                                    codeUri = "./",
                                     handler = "${el.enclosingElement}::${el.simpleName}",
                                     events =
                                     mapOf(
@@ -127,7 +128,7 @@ class ServiceProcessor : AbstractProcessor() {
         println("Writing $outputFile")
         val yamlString = Yaml(
             configuration = YamlConfiguration(
-                encodeDefaults = true,
+                encodeDefaults = false,
                 polymorphismStyle = PolymorphismStyle.None,
             )
         ).encodeToString(SamTemplate.serializer(), template)
@@ -141,10 +142,36 @@ class ServiceProcessor : AbstractProcessor() {
         val file = File(ProcessorProperties.configFile)
 
         val content = """
+            # More information about the configuration file can be found here:
+            # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html
             version = 0.1
+            
+            [default.global.parameters]
+            stack_name = "sam-app"
+            
+            [default.build.parameters]
+            cached = true
+            parallel = true
+            
+            [default.validate.parameters]
+            lint = true
+            
             [default.deploy.parameters]
-            region = "us-east-1"
-            stack_name = "shadow-service-stack"
+            capabilities = "CAPABILITY_IAM"
+            confirm_changeset = true
+            resolve_s3 = true
+            
+            [default.package.parameters]
+            resolve_s3 = true
+            
+            [default.sync.parameters]
+            watch = true
+            
+            [default.local_start_api.parameters]
+            warm_containers = "EAGER"
+            
+            [default.local_start_lambda.parameters]
+            warm_containers = "EAGER"
         """.trimIndent()
 
         println("Writing ${ProcessorProperties.configFile}")
