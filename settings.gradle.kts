@@ -5,3 +5,4 @@ rootProject.name = "Shadow"
 include("processor")
 include("plugin")
 include("annotation")
+include("service")

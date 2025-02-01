@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm")
     `maven-publish`
+    alias(libs.plugins.ktlint)
 }
 
 group = "com.jramberger.shadow"

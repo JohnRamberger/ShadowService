@@ -3,6 +3,7 @@ plugins {
     id("java-gradle-plugin")
     id("com.gradle.plugin-publish") version "1.3.0" // For publishing the plugin
     `maven-publish`
+    alias(libs.plugins.ktlint)
 }
 
 group = "com.jramberger.shadow"

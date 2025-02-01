@@ -1,6 +1,5 @@
 plugins {
     kotlin("jvm")
-    kotlin("kapt")
     `maven-publish`
     alias(libs.plugins.ktlint)
 }
@@ -8,17 +7,19 @@ plugins {
 group = "com.jramberger.shadow"
 version = "1.0-SNAPSHOT"
 
-dependencies {
-    kapt(libs.auto.service)
-    implementation(libs.auto.service.annotations)
-    implementation(libs.simple.yaml)
-    implementation(project(":annotation"))
+repositories {
+    mavenCentral()
+}
 
+dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(20)
 }
 
 publishing {

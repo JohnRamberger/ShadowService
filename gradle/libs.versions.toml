@@ -1,0 +1,12 @@
+[versions]
+auto-service = "1.1.1"
+simple-yaml = "0.3.0"
+ktlint = "12.1.1"
+
+[libraries]
+auto-service = { module = "com.google.auto.service:auto-service", version.ref = "auto-service" }
+auto-service-annotations = { module = "com.google.auto.service:auto-service-annotations", version.ref = "auto-service" }
+simple-yaml = { module = "io.github.devatherock:simple-yaml", version.ref = "simple-yaml" }
+
+[plugins]
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
